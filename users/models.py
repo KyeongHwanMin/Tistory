@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
+GENDER_CHOICES = (
+    (0, 'Male'),
+    (1, 'Female'),
+    (2, 'Not to disclose')
+)
+
 class UserManager(BaseUserManager):
     def _create_user(self, email, username, password, gender=2, **extra_fields): #  맨 앞에 "_"표시 : 클래스 내에서만 사용한다는 명시적인 표현
         
