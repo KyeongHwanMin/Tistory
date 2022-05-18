@@ -10,7 +10,7 @@ def register(request):
             user.set_password(user_form.cleaned_data['password'])
             user.save()
             return render(request, 'registration/login.html', {'user':user})
-        else:
-            user_form = RegisterForm()
-            
-        return render(request, 'registeration/register.html', {'user_form':user_form})
+    else:
+        user_form = RegisterForm()
+
+    return render(request, 'registration/register.html', {'user_form':user_form})

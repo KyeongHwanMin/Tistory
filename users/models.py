@@ -26,20 +26,21 @@ class UserManager(BaseUserManager):
     
     def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_supseruser', True)
+        extra_fields.setdefault('is_superuser', True)
         
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True.')
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
         
-        return self._create_user(email, 'blogs/like_section.html', password, **extra_fields)
+        return self._create_user(email, '', password, **extra_fields)
 
 
 class User(AbstractUser):
     email = models.EmailField(verbose_name='email', max_length=255, unique=True)
     
     username = models.CharField(max_length=30)
+    gender = models.SmallIntegerField(choices=GENDER_CHOICES)
     
     objects = UserManager()
     USERNAME_FIELD = 'email'
